@@ -22,6 +22,7 @@ def calculate_metrics(classes):
     visible_methods_lens = []
     new_methods_lens = []
 
+    attributes_lens = []
     all_attributes_lens = []
     inherited_not_overriden_attributes_lens = []
     hidden_attributes_lens = []
@@ -38,6 +39,7 @@ def calculate_metrics(classes):
         visible_methods_len = len(get_visible_methods(cls_obj))
         new_methods_len = len(get_new_methods(cls_obj, classes))
 
+        attributes_len = len(get_attributes(cls_obj))
         all_attributes_len = len(get_all_attributes(cls_obj, classes))
         inherited_not_overriden_attributes_len = len(get_inherited_not_overriden_attributes(cls_obj, classes))
         hidden_attributes_len = len(get_hidden_attributes(cls_obj))
@@ -51,6 +53,7 @@ def calculate_metrics(classes):
         visible_methods_lens.append(visible_methods_len)
         new_methods_lens.append(new_methods_len)
 
+        attributes_lens.append(attributes_len)
         all_attributes_lens.append(all_attributes_len)
         inherited_not_overriden_attributes_lens.append(inherited_not_overriden_attributes_len)
         hidden_attributes_lens.append(hidden_attributes_len)
@@ -61,7 +64,7 @@ def calculate_metrics(classes):
             "MIF": calculate_mif([inherited_not_overriden_methods_len], [all_methods_len]),
             "AIF": calculate_aif([inherited_not_overriden_attributes_len], [all_attributes_len]),
             "MHF": calculate_mhf([visible_methods_len], [hidden_methods_len]),
-            "AHF": calculate_ahf([hidden_attributes_len], [all_attributes_len]),
+            "AHF": calculate_ahf([hidden_attributes_len], [attributes_len]),
             "POF": calculate_pof([inherited_and_overriden_methods_len], [new_methods_len], [nc])
         }
 
@@ -71,7 +74,7 @@ def calculate_metrics(classes):
         "MIF": calculate_mif(inherited_not_overriden_methods_lens, all_methods_lens),
         "AIF": calculate_aif(inherited_not_overriden_attributes_lens, all_attributes_lens),
         "MHF": calculate_mhf(visible_methods_lens, hidden_methods_lens),
-        "AHF": calculate_ahf(hidden_attributes_lens, all_attributes_lens),
+        "AHF": calculate_ahf(hidden_attributes_lens, attributes_lens),
         "POF": calculate_pof(inherited_and_overriden_methods_lens, new_methods_lens, all_ncs)
     }
 

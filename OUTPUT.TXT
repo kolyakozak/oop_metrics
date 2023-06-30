@@ -4,7 +4,7 @@ MAX_NC: 3.00
 MIF: 0.67
 AIF: 0.77
 MHF: 0.27
-AHF: 0.08
+AHF: 0.33
 POF: 0.14
 
 Base1
